@@ -190,22 +190,26 @@ public class RsyncWagon implements Wagon {
         BufferedReader processOutput, processErrors;
         argv.add(0, "rsync");
         argv.add(source);
-        argv.add(destination);
-        process = Runtime.getRuntime().exec(argv.toArray(new String[0]));
-        processOutput = new BufferedReader(new InputStreamReader(process.getInputStream()));
-        processErrors = new BufferedReader(new InputStreamReader(process.getErrorStream()));
-        do {
-            line = processOutput.readLine();
-            if (line != null) {
-                System.out.println(line);
-            }
-        } while (line != null);
-        do {
-            line = processErrors.readLine();
-            if (line != null) {
-                System.out.println(line);
-            }
-        } while (line != null);
-        process.waitFor();
+        argv.add("maven@" + destination);
+
+        System.out.println("dry: " + argv);
+        if (false) {
+            process = Runtime.getRuntime().exec(argv.toArray(new String[0]));
+            processOutput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            processErrors = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+            do {
+                line = processOutput.readLine();
+                if (line != null) {
+                    System.out.println(line);
+                }
+            } while (line != null);
+            do {
+                line = processErrors.readLine();
+                if (line != null) {
+                    System.out.println(line);
+                }
+            } while (line != null);
+            process.waitFor();
+        }
     }
 }
