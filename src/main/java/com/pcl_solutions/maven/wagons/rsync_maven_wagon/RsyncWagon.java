@@ -122,8 +122,8 @@ public class RsyncWagon implements Wagon {
 
     public void put(final File source, final String destination) {
         try {
-            runRsync(source.getCanonicalPath(), host + ":" + path + File.separator + destination, Arrays.asList("-aR",
-                    "--dirs", "--progress", "-e \"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\""));
+            runRsync(source.getCanonicalPath(), host + ":" + path + File.separator + destination,
+                    Arrays.asList("-aR", "--dirs", "--progress"));
         } catch (final Exception e) {
             System.out.println(e);
         }
@@ -133,11 +133,9 @@ public class RsyncWagon implements Wagon {
         try {
             final File remotePath = new File("target/rsync/" + path);
             remotePath.mkdirs();
-            runRsync("target/rsync/", host + ":/", Arrays.asList("-rd", "--progress",
-                    "-e \"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\""));
+            runRsync("target/rsync/", host + ":/", Arrays.asList("-rd", "--progress"));
             runRsync(sourceDirectory.getCanonicalPath() + "/", host + ":" + path + File.separator
-                    + destinationDirectory, Arrays.asList("-avc", "--progress",
-                            "-e \"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\""));
+                    + destinationDirectory, Arrays.asList("-avc", "--progress"));
         } catch (final Exception e) {
             System.out.println(e);
         }
