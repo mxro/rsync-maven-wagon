@@ -174,7 +174,7 @@ public class RsyncWagon implements Wagon {
             System.err.println("Error: Couldn't decode url '" + url + "'");
         } else {
             protocol = m.group(1);
-            host = "maven@" + m.group(3);
+            host = m.group(3);
             path = m.group(4);
             System.out.println("Decoded url '" + url + "' to:");
             System.out.println(" Protocol '" + protocol + "'");
