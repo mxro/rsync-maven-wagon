@@ -137,7 +137,7 @@ public class RsyncWagon implements Wagon {
                     "-e \"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\""));
             runRsync(sourceDirectory.getCanonicalPath() + "/", host + ":" + path + File.separator
                     + destinationDirectory, Arrays.asList("-avc", "--progress",
-                    "-e \"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\""));
+                            "-e \"ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null\""));
         } catch (final Exception e) {
             System.out.println(e);
         }
@@ -195,7 +195,7 @@ public class RsyncWagon implements Wagon {
         argv.add("maven@" + destination);
 
         System.out.println("dry: " + argv);
-        if (false) {
+        if (true) {
             process = Runtime.getRuntime().exec(argv.toArray(new String[0]));
             processOutput = new BufferedReader(new InputStreamReader(process.getInputStream()));
             processErrors = new BufferedReader(new InputStreamReader(process.getErrorStream()));
